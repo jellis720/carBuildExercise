@@ -17,15 +17,27 @@
 // Create the Factory class bellow:
 
 class Factory{
-  constructor(make, location, airbags, abs, warranty){
+  constructor(){
     this.make = "Mazda";
     this.location = "USA";
     this.airbags = true;
     this.abs = true;
     this.warranty = "60,000 miles/3 years";
+    this.massBuild = function(quantity, options){
+      this.quanity = quantity
+      return `Building ${quantity} ${this.color} ${this.trim} ${this.model}'s`;
+    }
+    this.customerBuild = function(color, options){
+      this.color = color;
+      this.options = options;
+      return `Building one ${color} ${this.trim} ${this.model} with the following options: ${options}`;
+    }
   }
 }
 
+let factory = new Factory
+
+console.log(factory)
 
 
 
@@ -36,7 +48,29 @@ class Factory{
 // Car should also have the following additional properties: enginesize (4), navigation (true), backupcamera (true), warranty (100,000 miles / 5 years)
 // Write your code below:
 
+class Car extends Factory{
+  constructor(model, doors, color, enginetype, transmission, trim, wheelstrim, audio, seatstrim, moonroof, enginesize, navigation, backupcamera, warranty){
+    super(warranty)
+    this.model = model;
+    this.doors = doors;
+    this.color = color;
+    this.enginetype = enginetype;
+    this.transmission = transmission;
+    this.trim = trim;
+    this.wheelstrim = wheelstrim;
+    this.audio = audio;
+    this.seatstrim = seatstrim;
+    this.moonroof = moonroof;
+    this.enginesize = "4 cylinder";
+    this.navigation = true;
+    this.backupcamera = true;
+    this.warranty = "100,000 / 5 years";
+  }
+}
 
+let car = new Car;
+
+console.log(car)
 
 
 // CREATE A SUB-CLASS CALLED SPORT
@@ -45,7 +79,20 @@ class Factory{
 // Sports cars should also have the following additional properties: moonroof (false), enginetype (gasoline), convertible (true), doors (2)
 // Write your code below:
 
+class Sport extends Car{
+  constructor(model, trim, transmission, top, color, seatstrim, audio, wheelstrim, moonroof, enginetype, convertible, doors){
+    super(model, trim, transmission, top, color, seatstrim, audio, wheelstrim)
+    this.top = top
+    this.moonroof = false
+    this.enginetype = "gasoline"
+    this.convertible = true
+    this.doors = "2"
+  }
+}
 
+let sport = new Sport
+
+console.log(sport)
 
 
 // CREATE A SUB-CLASS CALLED TRUCK
@@ -56,7 +103,24 @@ class Factory{
 // It should also inherit the warranty property so we can extend it to: 150,000 miles / 6 years.
 // Write your code below:
 
+class Truck extends Factory{
+  constructor(model, color, enginesize, hitch, bed, navigation, backupcamera, audio, warranty){
+    super(warranty)
+    this.model = model;
+    this.color = color;
+    this.enginesize = enginesize;
+    this.hitch = hitch;
+    this.bed = bed;
+    this.navigation = navigation;
+    this.backupcamera = true;
+    this.audio = "basic";
+    this.warranty = "150,000 miles / 6 years"
+  }
+}
 
+let truck = new Truck;
+
+console.log(truck);
 
 
 // LET'S BUILD SOME CARS AND TRUCKS!
@@ -67,19 +131,20 @@ class Factory{
 
 // Write your 'mazda3' instance below:
 
+// constructors from above:  constructor(model, doors, color, enginetype, transmission, trim, wheelstrim, audio, seatstrim, moonroof, enginesize, navigation, backupcamera, warranty)
+
+let mazda3 = new Car('mazda3', '', 'red', 'hybrid', 'automatic', 'touring', 'base', 'premium', 'leather', true)
 
 // Print mazda3. I should have all the above properties.
 // Write your code below:
 
-
-
-
+console.log(mazda3)
 
 // Print calling massBuild(), building 35000 cars.
 // It should print: "Building 35000 Red Touring Mazda3's."
 // Write your code below:
 
-
+console.log(mazda3.massBuild(35000));
 
 
 
@@ -88,6 +153,7 @@ class Factory{
 // Write your code below:
 
 
+console.log(mazda3.customerBuild("yellow", "weather, package, satellite, radio, rear spoiler"));
 
 
 
@@ -98,13 +164,15 @@ class Factory{
 // Write your 'miataRf' instance below:
 // Write your code below:
 
+// sport constructors:  constructor(model, trim, transmission, top, color, seatstrim, audio, wheelstrim, moonroof, enginetype, convertible, doors)
 
-
+let miata = new Sport("Miata-RF", "Grand Touring", "manual", "hard top", "red", "leather", "premium", "premium")
 
 
 // Print miataRf. It should have all of the above properties. Plus, the extended warranty.
 // Write your code below:
 
+console.log(miata)
 
 
 
@@ -113,16 +181,13 @@ class Factory{
 // It should print: "Building 15000 Red Grand Touring Miata-RF's."
 // Write your code below:
 
-
-
-
+console.log(miata.massBuild(15000));
 
 // Print miataRf, calling customerBuild(), building one black Miata-Rf with the following options, as an array: hid headlights, sports suspension, leather steering wheel, heated seats, adaptive cruise control.
 // It should read: "Building one black Grand Touring Miata-RF with the following options: hid headlights, sports suspension, leather steering wheel, heated seats, adaptive cruise control"
 // Write your code below:
 
-
-
+console.log(miata.customerBuild("black", "hid headlights, sports suspension, leather steering wheel, heated seats, adaptive cruise control"))
 
 // TRAIL BLAZER MASS PRODUCTION
 // The Trail Blazer should inherit from truck.
