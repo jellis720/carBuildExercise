@@ -1,3 +1,11 @@
+Instructions  
+
+In this project, you are asked to build an automobile factory using classes. Instructions accompany each class and sub-class, explaining what each class should do. You will implement the following: class, constructor, extends and super.
+
+More specific instructions can be found in script.js
+
+........
+
 // CLASSES PROJECT
 // In this project, you will build a Mazda car factory that manufactures both cars and trucks.
 // Read each set of instructions carefully!
@@ -15,16 +23,6 @@
 // It should print "Building one COLOR TRIM MODEL with the following options: OPTIONS", i.e: "Building one red Sport Mazda3 with the following options: heated seats, rear spoiler"
 
 // Create the Factory class bellow:
-
-class Factory{
-  constructor(make, location, airbags, abs, warranty){
-    this.make = "Mazda";
-    this.location = "USA";
-    this.airbags = true;
-    this.abs = true;
-    this.warranty = "60,000 miles/3 years";
-  }
-}
 
 
 
